@@ -13,7 +13,7 @@ export class EditUpdateEmergencyComponent implements OnInit {
   public users : any = {};
   id;
   button;
-
+  button2;
   constructor(private snackBar: MatSnackBar, private _listService : EmergencyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
