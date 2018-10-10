@@ -1,0 +1,46 @@
+<div class="skill_container">
+  <div class="skill_border">
+    <p class="text_center">Add Language</p>
+    <form class="form-horizontal" [formGroup]="languageForm">
+      <div class="box-body">
+        <div class="row">
+          <div class="example-section">
+            <mat-form-field class="language">
+              <mat-select placeholder="Language" formControlName="language">
+                <mat-option *ngFor="let language of languages" [value]="language.id">
+                  {{language.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                    <span *ngIf="(!languageForm.get('language').valid && languageForm.get('language').touched) || languageForm.get('language').errors?.required">Please select language</span>
+            </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <section class="example-section">
+            <mat-checkbox class="example-margin" formControlName="reading">Reading </mat-checkbox>
+          </section>
+        </div>
+        <div class="row">
+          <section class="example-section">
+            <mat-checkbox class="example-margin" formControlName="speaking">Speaking</mat-checkbox>
+          </section>
+        </div>
+        <div class="row">
+          <section class="example-section">
+            <mat-checkbox class="example-margin" formControlName="writing">Writing</mat-checkbox>
+          </section>
+        </div>
+        <br/>
+        <div class="row button-center">
+          <button mat-raised-button (click)="cancelLanguage()">CANCEL</button>&nbsp;&nbsp;
+          <!-- <button mat-raised-button color="accent" [disabled]="!languageForm.valid" (click)="createupdatelanguage()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button> -->
+          <button mat-raised-button color="accent" (click)="createupdatelanguage()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

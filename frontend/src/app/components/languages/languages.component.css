@@ -1,0 +1,61 @@
+.tab-content>.active {
+    display: block;
+  }
+  .tab-content>.tab-pane {
+    display: none;
+  }
+  .reviewBlock {
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+    border: none;
+    position: relative;
+    margin: 0px 0;
+    padding: 39px 19px 14px;
+    background-color: white;
+    border: 1px solid #DDD;
+    font-size: 12px;
+  }
+  .form-horizontal {
+    font-size: 1.2em;
+  }
+
+  .box-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+    margin: 0px 6px 5px 54px;
+  }
+  .example-margin {
+    margin: 0 10px;
+  }
+  .language{
+    width: 60%;
+  }
+  .skill_container {
+    width: 634px !important;
+    height: 331px !important;
+    /* margin-left: 170px; */
+  }
+.mat-raised-button.mat-accent {
+  background-color: #006400 !important;
+}
+.skill_border{
+  border: 1px solid black;
+  /* height: 370px; */
+}
+.text_center{
+text-align: center;
+font-family: serif;
+/* margin-top: 21px; */
+font-size: 21px;
+}
+.button-center{
+  margin-left: 146px;
+  margin-top: 4px;
+}
+.example-section{
+  margin-left: 180px;
+  width: 340px;
+
+}
