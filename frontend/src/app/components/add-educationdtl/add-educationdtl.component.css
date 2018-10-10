@@ -1,0 +1,27 @@
+.skill_container {
+    width: 558px !important;
+    height: 364px !important;
+}
+.example-container > * {
+    width: 295px;
+    margin-left: 133px;
+}
+
+.mat-raised-button.mat-accent {
+    background-color: #006400 !important;
+    color: #fff;
+}
+
+.skill_border{
+    border: 1px solid black;
+    height: 370px;
+}
+.text_center{
+text-align: center;
+margin-top: 21px;
+font-size: 21px;
+font-family: serif;
+}
+.button-center{
+    margin-left: 146px;
+}

@@ -1,0 +1,14 @@
+<br>
+<br>
+<br>
+<h1 class="mat-h1">Tech Detail Page</h1>
+
+<div class="grid-container">
+  <mat-card>
+    <h2>You selected Department Id is: {{departmentId}}</h2>
+    <button mat-raised-button color="primary" (click)="techDetailOverview()">OverView</button>
+    <button mat-raised-button color="accent" (click)="techDetailContact()">Contact</button>
+    <app-tech-detail-contact [show]="showData" [Data]="filteredData"></app-tech-detail-contact>
+    <app-tech-detail-overview [show]="showData" [Data]="filteredData"></app-tech-detail-overview>
+  </mat-card>
+</div>

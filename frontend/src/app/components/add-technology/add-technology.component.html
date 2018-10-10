@@ -1,0 +1,57 @@
+<div>
+
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create And Add A New Technology </h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Technology Name" formControlName="name" #name>
+        <mat-error *ngIf="submitted && createTech.name.errors&&createTech.name.errors.required">
+          Name for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Technology Auther" formControlName="auther" #auther>
+        <mat-error *ngIf="submitted && createTech.auther.errors&&createTech.auther.errors.required">
+          Auther for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Description" formControlName="description" #description>
+        <mat-error *ngIf="submitted && createTech.description.errors&&createTech.description.errors.required">
+          Description for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Established" formControlName="established" #established>
+        <mat-error *ngIf="submitted && createTech.established.errors&&createTech.established.errors.required">
+          Established for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="LatestVersion" formControlName="latestVersion" #latestVersion>
+        <mat-error *ngIf="submitted && createTech.latestVersion.errors&&createTech.latestVersion.errors.required">
+          LatestVersion for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="DocURL" formControlName="docURL" #docURL>
+        <mat-error *ngIf="submitted && createTech.docURL.errors&&createTech.docURL.errors.required">
+          DocURL for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/all-technologies">Back</button>&nbsp;
+      <button type="submit" (click)="addTechnlogy(name.value, auther.value, description.value, established.value, latestVersion.value, docURL.value)"
+        [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>

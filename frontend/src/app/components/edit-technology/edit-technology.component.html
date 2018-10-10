@@ -1,0 +1,57 @@
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Update Issue</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Technology Name" formControlName="name" #name>
+        <mat-error *ngIf="submitted && updateTechCtrlsname.errors&&updateTechCtrlsname.errors.required">
+          Name for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Technology Auther" formControlName="auther" #auther>
+        <mat-error *ngIf="submitted && updateTechCtrlsauther.errors&&updateTechCtrlsauther.errors.required">
+          Auther for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Description" formControlName="description" #description>
+        <mat-error *ngIf="submitted && updateTechCtrlsdescription.errors&&updateTechCtrlsdescription.errors.required">
+          Description for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Established" formControlName="established" #established>
+        <mat-error *ngIf="submitted && updateTechCtrlsestablished.errors&&updateTechCtrlsestablished.errors.required">
+          Established for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="LatestVersion" formControlName="latestVersion" #latestVersion>
+        <mat-error *ngIf="submitted && updateTechCtrlslatestVersion.errors&&updateTechCtrlslatestVersion.errors.required">
+          LatestVersion for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="DocURL" formControlName="docURL" #docURL>
+        <mat-error *ngIf="submitted && updateTechCtrlsdocURL.errors&&updateTechCtrlsdocURL.errors.required">
+          DocURL for Technology is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br><br>
+
+      <button mat-raised-button color="accent" routerLink="/all-technologies">Back</button>&nbsp;
+      <button type="submit" (click)="updateTechnology(name.value, auther.value, description.value, established.value, latestVersion.value, docURL.value)"
+        [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>

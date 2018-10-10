@@ -1,0 +1,25 @@
+<br>
+<br>
+<div>
+  <!-- <mat-list>
+    <mat-list-item *ngFor="let technology of topTenTechnologies">
+      <img matListAvatar src="https://cdn.freebiesupply.com/logos/large/2x/angular-icon-logo-png-transparent.png" [alt]="technology.docURL">
+      <h3 matLine><span><a [href]="technology.docURL">{{technology.name}}</a></span> </h3>
+      <p matLine>{{technology.auther}}</p>
+    </mat-list-item>
+  </mat-list> -->
+
+  <mat-grid-list cols="4" rowHeight="100px">
+    <span class="spacer"></span>
+    <mat-grid-tile *ngFor="let technology of topTenTechnologies" [colspan]="tile.cols" [rowspan]="tile.rows"
+      [style.background]="tile.color">
+      <div>
+        <img matListAvatar src="https://cdn.freebiesupply.com/logos/large/2x/angular-icon-logo-png-transparent.png"
+          [alt]="technology.docURL" width="50">
+        <h3 matLine><span><a [href]="technology.docURL">{{technology.name}}</a></span></h3>
+      </div>
+      <!-- <p matLine>{{technology.auther}}</p> -->
+    </mat-grid-tile>
+    <span class="spacer"></span>
+  </mat-grid-list>
+</div>

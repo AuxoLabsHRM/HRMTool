@@ -1,0 +1,45 @@
+.example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+.example-large-box {
+  height: 300px;
+  width: 300px;
+}
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.checkboc_bckclr {
+  background-color: #6495ed !important;
+}
+.checkmark {
+  color: #006400 !important;
+}
+.crossmark {
+  color: #FF4500 !important 
+}
+.mat-form-field[_ngcontent-c10] {
+  font-size: 14px;
+  width: 15% !important;
+}
+.row {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: 7px !important; 
+}
+.filter{
+  width: 30px !important;
+}

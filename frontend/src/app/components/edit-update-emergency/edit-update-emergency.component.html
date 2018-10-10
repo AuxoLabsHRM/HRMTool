@@ -1,0 +1,35 @@
+<div class="container">
+    <h2 class="text-center">Emergency Contacts</h2>
+        <form #userForm="ngForm" (ngSubmit)="addUpdateContact()" novalidate>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" required #name="ngModel" class="form-control" name="name" [(ngModel)]="users.name" [class.is-invalid]="name.invalid && name.touched">
+            <small class="text-danger" *ngIf="name.invalid && name.touched">Required</small>
+          </div>
+          <div class="form-group">
+            <label>RelationShip</label>
+            <input type="email" required #relationship="ngModel" class="form-control" name="relationship" [(ngModel)]="users.relationship" [class.is-invalid]="relationship.invalid && relationship.touched">
+            <small class="text-danger" *ngIf="relationship.invalid && relationship.touched">Required</small>
+          </div>
+          <div class="form-group">
+              <label>Home Phone</label>
+              <input type="tel" required #homePhone="ngModel" pattern="^\d{10}$" class="form-control" name="homePhone" [(ngModel)]="users.homePhone" [class.is-invalid]="homePhone.invalid && homePhone.touched">
+              <div *ngIf="homePhone.errors && (homePhone.invalid || homePhone.touched)">
+                  <small class="text-danger" *ngIf="homePhone.errors.required">Required</small>
+                  <small class="text-danger" *ngIf="homePhone.errors.pattern">Must be 10 digits</small>
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Mobile Phone</label>
+                <input type="tel" required #mobilePhone="ngModel" pattern="^\d{10}$" class="form-control" name="mobilePhone" [(ngModel)]="users.mobilePhone" [class.is-invalid]="mobilePhone.invalid && mobilePhone.touched">
+                <div *ngIf="mobilePhone.errors && (mobilePhone.invalid || mobilePhone.touched)">
+                    <small class="text-danger" *ngIf="mobilePhone.errors.required">Required</small>
+                    <small class="text-danger" *ngIf="mobilePhone.errors.pattern">Must be 10 digits</small>
+                </div>
+              </div>
+              <button class="btn btn-primary right" (click)="cancel()" type="button">Cancel</button>
+              <button [disabled]="!userForm.form.valid" class="btn btn-success right" type="submit">{{button}}</button>
+        </form>
+      <!-- </div> -->
+      </div>
+      

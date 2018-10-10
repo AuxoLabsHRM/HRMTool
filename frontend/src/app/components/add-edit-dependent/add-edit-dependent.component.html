@@ -1,0 +1,59 @@
+<div class="dependent_container">
+  <div class="dependent_border">
+    <p class="text_center">Add Dependent</p>
+    <form [formGroup]="dependentForm" (ngSubmit)="onFormSubmit(dependentForm.value)">
+      <div class="row">
+          <div class="example-container">
+            <mat-form-field>
+              <input matInput placeholder="Name" formControlName="name" required/>
+              <mat-error>
+                <span *ngIf="(!dependentForm.get('name').valid && dependentForm.get('name').touched) || dependentForm.get('name').errors?.required">
+                  Please enter the name
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+      </div>
+      <div class="row">
+        <div class="example-container">
+          <mat-form-field>
+            <mat-select placeholder="Relationship" formControlName="relationship" required>
+              <mat-option *ngFor="let relationship of relationships" [value]="relationship.id">
+                {{relationship.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <span *ngIf="(!dependentForm.get('relationship').valid && dependentForm.get('relationship').touched) || dependentForm.get('relationship').errors?.required">
+                Please select relationship
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+          <div class="example-container">
+              <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>
+                  <span *ngIf="(!dependentForm.get('dateOfBirth').valid && dependentForm.get('dateOfBirth').touched) || dependentForm.get('dateOfBirth').errors?.required">
+                    Please select the to date
+                  </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+      </div>
+      <div class="row">
+          <div class="col l12 s12 m12 x12 button-center" >
+            <button mat-raised-button (click)="cancel()">CANCEL</button>  
+            &nbsp;&nbsp;
+            <!-- <button mat-raised-button color="accent" [disabled]="!dependentForm.valid" (click)="createupdatedependent()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button> -->
+            <button mat-raised-button color="accent" (click)="createupdatedependent()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>

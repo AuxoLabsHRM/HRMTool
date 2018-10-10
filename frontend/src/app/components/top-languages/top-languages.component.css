@@ -1,0 +1,25 @@
+.tech-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.tech-docURL {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-right {
+  text-align: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

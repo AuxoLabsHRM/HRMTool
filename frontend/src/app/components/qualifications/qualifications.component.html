@@ -1,0 +1,185 @@
+<mat-card-content>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Skills">
+      <div class="tab-content">
+        <br/>
+        <div class="row">
+          <button mat-flat-button color="primary" (click)="addskill(skillDetails)">  Add Skill</button>
+        </div>
+        <br/>
+        <div class="example-header">
+          <mat-form-field>
+            <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+          </mat-form-field>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+
+            <!-- SKill Column -->
+            <ng-container matColumnDef="skill">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Skill </mat-header-cell>
+              <mat-cell *matCellDef="let skillDetails"> {{skillDetails.skill.name}}</mat-cell>
+            </ng-container>
+
+            <!-- Details Column -->
+            <ng-container matColumnDef="detail">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Details </mat-header-cell>
+              <mat-cell *matCellDef="let skillDetails"> {{skillDetails.detail}}</mat-cell>
+            </ng-container>
+
+            <!-- Action Coloumn -->
+            <ng-container matColumnDef="customColumn1">
+              <mat-header-cell *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+              <mat-cell *matCellDef="let skillDetails">
+                &nbsp;&nbsp;
+                <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/edit.png" style="cursor:pointer;"
+                  rel="tooltip" title="Edit" (click)="editskill(skillDetails)" data-original-title="Edit">
+
+                <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/delete.png" style="margin-left:15px;cursor:pointer;"
+                  rel="tooltip" title="" (click)="deleteskill(skillDetails._id)" data-original-title="Delete">
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+
+      </div>
+    </mat-tab>
+    <mat-tab label="Education">
+      <div>
+        <br/>
+        <div class="row">
+          <button mat-flat-button color="primary" (click)="addeducationdtl()">Add Education</button>
+        </div>
+        <br/>
+        <mat-form-field>
+          <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        </mat-form-field>
+
+        <mat-table [dataSource]="dataSource1" matSort>
+
+          <!-- Qualification Column -->
+          <ng-container matColumnDef="qualification">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Qualification</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.qualification.name}}</mat-cell>
+          </ng-container>
+
+          <!-- Institute Column -->
+          <ng-container matColumnDef="institute">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Institute</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.institute}}</mat-cell>
+          </ng-container>
+
+          <!-- Start Date Column -->
+          <ng-container matColumnDef="startdate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fromDate | date:' yyyy/MM/dd'}}</mat-cell>>
+          </ng-container>
+          <!-- Completed Date-->
+          <ng-container matColumnDef="completedon">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Completed On</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.endDate | date:' yyyy/MM/dd'}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="customColumn2">
+            <mat-header-cell *matHeaderCellDef>
+              Action
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              &nbsp;&nbsp;
+              <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/edit.png" style="cursor:pointer;"
+                rel="tooltip" title="Edit" (click)="editeducation(element)" data-original-title="Edit">
+
+              <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/delete.png" style="margin-left:15px;cursor:pointer;"
+                rel="tooltip" title="" (click)="deleteeducation(element._id)" data-original-title="Delete">
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </mat-tab>
+    <mat-tab label="Languages" class="tab-pane active">
+      <div class="reviewBlock">
+        <div>
+          <br/>
+          <div class="row">
+            <button mat-flat-button color="primary" (click)="addlanguage()">Add Language</button>
+          </div>
+          <br/>
+          <mat-form-field>
+            <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+          </mat-form-field>
+
+          <mat-table [dataSource]="dataSource3" matSort>
+
+
+            <!-- Language Column -->
+            <ng-container matColumnDef="language">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Language</mat-header-cell>
+              <mat-cell *matCellDef="let languageelement"> {{languageelement.language.name}}</mat-cell>
+            </ng-container>
+
+            <!-- Reading Column -->
+            <ng-container matColumnDef="reading">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Reading</mat-header-cell>
+              <mat-cell *matCellDef="let languageelement">
+                <span class="fa fa-check checkmark" *ngIf="languageelement.reading" aria-hidden="true"></span>
+
+                <span class="fa fa-times crossmark" *ngIf="!languageelement.reading" aria-hidden="true"></span>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Speaking -->
+            <ng-container matColumnDef="speaking">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Speaking</mat-header-cell>
+              <mat-cell *matCellDef="let languageelement">
+                <span class="fa fa-check checkmark" *ngIf="languageelement.speaking" aria-hidden="true"></span>
+
+                <span class="fa fa-times crossmark" *ngIf="!languageelement.speaking" aria-hidden="true"></span>
+              </mat-cell>>
+            </ng-container>
+            <ng-container matColumnDef="writing">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Writing</mat-header-cell>
+              <mat-cell *matCellDef="let languageelement">
+                <span class="fa fa-check checkmark" *ngIf="languageelement.writing" aria-hidden="true"></span>
+
+                <span class="fa fa-times crossmark" *ngIf="!languageelement.writing" aria-hidden="true"></span>
+              </mat-cell>
+            </ng-container>
+            <!--- Action coloumn--> 
+            <ng-container matColumnDef="customColumn3">
+              <mat-header-cell *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+              <mat-cell *matCellDef="let languageelement">
+                &nbsp;&nbsp;
+                <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/edit.png" style="cursor:pointer;"
+                  rel="tooltip" title="Edit" (click)="editlanguage(languageelement)" data-original-title="Edit">
+
+                <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/delete.png" style="margin-left:15px;cursor:pointer;"
+                  rel="tooltip" title="" (click)="deletelanguage(languageelement._id)" data-original-title="Delete">
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card-content>

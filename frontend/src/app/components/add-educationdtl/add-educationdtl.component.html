@@ -1,0 +1,68 @@
+<div class="skill_container">
+  <div class="skill_border">
+    <p class="text_center">Add Education</p>
+    <form [formGroup]="educationdtlForm" (ngSubmit)="onFormSubmit(educationdtlForm.value)">
+      <div class="row">
+        <div class="example-container">
+          <mat-form-field>
+            <mat-select placeholder="Qualification" formControlName="qualification">
+              <mat-option *ngFor="let qualification of qualifications" [value]="qualification.id">
+                {{qualification.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <span *ngIf="(!educationdtlForm.get('qualification').valid && educationdtlForm.get('qualification').touched) || educationdtlForm.get('qualification').errors?.required">
+                Please select qualification
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Institute" formControlName="institute" required/>
+            <mat-error>
+              <span *ngIf="(!educationdtlForm.get('institute').valid && educationdtlForm.get('institute').touched) ||educationdtlForm.get('institute').errors?.required">
+                Please enter the Institute
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Start Date" formControlName="fromDate">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker1" placeholder="Completion on" formControlName="endDate" [max]="getToday()">
+            <mat-datepicker-toggle matSuffix [for]="picker1">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+
+      </div>
+      <div class="row">
+        <div class="col l12 s12 m12 x12 button-center">
+          <button mat-raised-button (click)="close()">CANCEL</button>
+          &nbsp;&nbsp;
+          <!-- <button mat-raised-button color="accent" [disabled]="!educationdtlForm.valid" (click)="createupdateeducation()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button> -->
+          <button mat-raised-button color="accent" (click)="createupdateeducation()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

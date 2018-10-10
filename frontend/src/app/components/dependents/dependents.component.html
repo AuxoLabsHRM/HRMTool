@@ -1,0 +1,59 @@
+<div class="container"><h2 class="text-center">Dependents</h2>
+  <p>
+      <!-- <button class="btn btn-success"><a routerLink="/addeditdependent">Add dependent</a></button> -->
+      <!-- <button class="btn btn-success" (click)="adddepentdent()" >Add dependent</button> -->
+      <button mat-flat-button color="primary" (click)="adddepentdent()">Add dependent</button>
+
+  </p>
+  
+  <div class="example-header" *ngIf="dataSource.data.length > 0">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    
+    <div class="example-container mat-elevation-z8" *ngIf="dataSource.data.length > 0">
+    
+      <mat-table [dataSource]="dataSource" matSort>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+    
+        <!-- RelationShip Column -->
+        <ng-container matColumnDef="relationship">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> RelationShip </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.relationship.name}} </mat-cell>
+        </ng-container>
+    
+        <!-- Date Of Birth Column -->
+        <ng-container matColumnDef="dateOfBirth">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Birth </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.dateOfBirth | date:'	yyyy/MM/dd'}} </mat-cell>
+        </ng-container>
+  
+        <!-- For Actions  -->
+  <ng-container matColumnDef="Action">
+    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-raised-button class="right" color="primary" (click)="editDependent(row)">Edit</button>
+      <button mat-raised-button class="right" color="warn" (click)="deleteDependent(row._id)">Delete</button>
+    </mat-cell>
+  </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+    
+      <mat-paginator [length]="tableLength"
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  
+    <div class="text-center" *ngIf="dataSource.data.length == 0">
+        No Dependent Added!
+    </div>
+  </div>
