@@ -8,6 +8,10 @@ var UserSchema = new mongoose.Schema({
   },
   roleType: {
     type: String
+  },
+  isAvaliable: {
+    type: String,
+    default: false
   }
 });
 
