@@ -3,51 +3,18 @@ import { MatTabChangeEvent, MatPaginator, MatSort, MatTableDataSource, MatDialog
 import { ApplyLeaveComponent } from '../apply-leave/apply-leave.component';
 import { QualificationService } from '../../../_services/qualification.service';
 import { Router } from '@angular/router';
+import { tick } from '@angular/core/testing';
 
 export interface empleavedtl {
-  employeeid: string;
-  employeeName: string;
+  // employeeid: string;
+  // employeeName: string;
   fromDate: string;
   toDate: string;
   note: string;
+  leave: string;
+  leave_status: string;
 }
-const ELEMENT_DATA: empleavedtl[] = [
-  {
-    "employeeid": "AUX000",
-    "employeeName": "Mythili",
-    "fromDate": "01-09-2018",
-    "toDate": "01-09-2018",
-    "note":"Test"
-  },
-  {
-    "employeeid": "AUX001",
-    "employeeName": "Asha",
-    "fromDate": "02-09-2018",
-    "toDate": "02-09-2018",
-    "note":"Test1"
-  },
-  {
-    "employeeid": "AUX002",
-    "employeeName": "Kirthi",
-    "fromDate": "04-09-2018",
-    "toDate": "06-09-2018",
-    "note":"Test2"
-  },
-  {
-    "employeeid": "AUX003",
-    "employeeName": "Anu",
-    "fromDate": "05-09-2018",
-    "toDate": "05-09-2018",
-    "note":"Test3"
-  },
-  {
-    "employeeid": "AUX004",
-    "employeeName": "Janu",
-    "fromDate": "6-09-2018",
-    "toDate": "06-09-2018",
-    "note":"Test4"
-  }
-]
+
 @Component({
   selector: 'app-leave',
   templateUrl: './leave.component.html',
@@ -57,8 +24,8 @@ export class LeaveComponent implements OnInit {
   
   userId: any = JSON.parse(localStorage.getItem('currentUser'))._id;
   
-  displayedColumns: string[] = ['employeeid', 'employeeName', 'fromDate', 'toDate', 'note', 'customColumn'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['fromDate', 'toDate', 'note', 'leave','status', 'customColumn'];
+  dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -72,7 +39,7 @@ export class LeaveComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.getleavedtl(this.userId);
   }
 
   applyFilter(filterValue: string) {
@@ -104,5 +71,15 @@ export class LeaveComponent implements OnInit {
 
   
     this.router.navigate(['/Applyleave']);
+  }
+
+  getleavedtl(id){
+    this.qualificationservice.getleavedtl(id).subscribe((res: any) =>{
+      this.dataSource.data = res.data;
+    });
+  }
+
+  leavecancel(){
+
   }
 }
