@@ -11,31 +11,42 @@
   <mat-table [dataSource]="dataSource" matSort>
 
     <!-- Employee ID Coloumn -->
-    <ng-container matColumnDef="employeeid">
+    <!-- <ng-container matColumnDef="employeeid">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Employee ID </mat-header-cell>
       <mat-cell *matCellDef="let leave"> {{leave.employeeid}}</mat-cell>
-    </ng-container>
+    </ng-container> -->
     <!-- Employee name Coloumn -->
-    <ng-container matColumnDef="employeeName">
+    <!-- <ng-container matColumnDef="employeeName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Name </mat-header-cell>
       <mat-cell *matCellDef="let leave"> {{leave.employeeName}}</mat-cell>
-    </ng-container>
+    </ng-container> -->
     <!-- From date Column -->
     <ng-container matColumnDef="fromDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> From Date </mat-header-cell>
-      <mat-cell *matCellDef="let leave"> {{leave.fromDate}}</mat-cell>
+      <mat-cell *matCellDef="let leave"> {{leave.fromDate | date:' yyyy/MM/dd'}}</mat-cell>
     </ng-container>
 
     <!-- To Date Column -->
     <ng-container matColumnDef="toDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> To Date </mat-header-cell>
-      <mat-cell *matCellDef="let leave"> {{leave.toDate}}</mat-cell>
+      <mat-cell *matCellDef="let leave"> {{leave.toDate | date:' yyyy/MM/dd'}}</mat-cell>
     </ng-container>
 
     <!-- Note Column -->
     <ng-container matColumnDef="note">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Note</mat-header-cell>
       <mat-cell *matCellDef="let leave"> {{leave.note}}</mat-cell>
+    </ng-container>
+
+    <!-- Leave days-->
+    <ng-container matColumnDef="leave">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Leave Days</mat-header-cell>
+      <mat-cell *matCellDef="let leave"> {{leave.leave}}</mat-cell>
+    </ng-container>
+    <!-- Status-->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let leave"> {{leave.leave_status}}</mat-cell>
     </ng-container>
     <!-- Action Coloumn -->
     <ng-container matColumnDef="customColumn">
@@ -44,11 +55,11 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let leave">
         &nbsp;&nbsp;
-        <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/edit.png" style="cursor:pointer;"
-          rel="tooltip" title="Edit" (click)="editleave(leave)" data-original-title="Edit">
-
-        <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/delete.png" style="margin-left:15px;cursor:pointer;"
-          rel="tooltip" title="" (click)="deleteleave(leave._id)" data-original-title="Delete">
+        <!-- <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/edit.png" style="cursor:pointer;"
+          rel="tooltip" title="Edit" (click)="editleave(leave)" data-original-title="Edit"> -->
+          <a href="" (click)="leavecancel()" >Cancel</a>
+        <!-- <img class="tableActionButton" src="http://apps.gamonoid.com/icehrm-open-core/web/images/delete.png" style="margin-left:15px;cursor:pointer;"
+          rel="tooltip" title="" (click)="deleteleave(leave._id)" data-original-title="Delete"> -->
       </mat-cell>
     </ng-container>
 
