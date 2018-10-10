@@ -51,7 +51,7 @@ const ELEMENT_DATA: empleavedtl[] = [
 @Component({
   selector: 'app-leave',
   templateUrl: './leave.component.html',
-  styleUrls: ['./leave.component.scss']
+  styleUrls: ['./leave.component.css']
 })
 export class LeaveComponent implements OnInit {
   
