@@ -6,7 +6,7 @@ import {MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-edit-update-emergency',
   templateUrl: './edit-update-emergency.component.html',
-  styleUrls: ['./edit-update-emergency.component.scss']
+  styleUrls: ['./edit-update-emergency.component.css']
 })
 export class EditUpdateEmergencyComponent implements OnInit {
   
