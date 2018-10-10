@@ -35,17 +35,20 @@ export class EditUpdateEmergencyComponent implements OnInit {
       console.log('data', res);
       if (res.ResultTye == 1) {
         this.snackBar.open(res.Message, '', {
-          duration: 2000
+          duration: 2000,
+          verticalPosition: 'top'
         });
         this.users = res.data;
       } else {
         this.snackBar.open(res.Message, '', {
-          duration: 2000
+          duration: 2000,
+          verticalPosition: 'top'
         });
       }
      }, (error) => {
       this.snackBar.open(error, '', {
-        duration: 2000
+        duration: 2000,
+        verticalPosition: 'top'
       });
      });
   }
@@ -57,17 +60,20 @@ export class EditUpdateEmergencyComponent implements OnInit {
         console.log('data', res);
         if (res.ResultTye == 1) {
           this.snackBar.open(res.Message, '', {
-            duration: 2000
+            duration: 2000,
+            verticalPosition: 'top'
           });
           this.router.navigate(['emergency_contact']);
         } else {
           this.snackBar.open(res.Message, '', {
-            duration: 2000
+            duration: 2000,
+            verticalPosition: 'top'
           });
         }
        }, (error) => {
         this.snackBar.open(error, '', {
-          duration: 2000
+          duration: 2000,
+          verticalPosition: 'top'
         });
        });
     } else {
@@ -75,17 +81,20 @@ export class EditUpdateEmergencyComponent implements OnInit {
         console.log('data', res);
         if (res.ResultTye == 1) {
           this.snackBar.open(res.Message, '', {
-            duration: 2000
+            duration: 2000,
+            verticalPosition: 'top'
           });
           this.router.navigate(['emergency_contact']);
         } else {
           this.snackBar.open(res.Message, '', {
-            duration: 2000
+            duration: 2000,
+            verticalPosition: 'top'
           });
         }
        }, (error) => {
         this.snackBar.open(error, '', {
-          duration: 2000
+          duration: 2000,
+          verticalPosition: 'top'
         });
        });
     }

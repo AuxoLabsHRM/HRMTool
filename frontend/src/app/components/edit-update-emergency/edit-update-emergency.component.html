@@ -14,7 +14,7 @@
           <div class="form-group">
               <label>Home Phone</label>
               <input type="tel" required #homePhone="ngModel" pattern="^\d{10}$" class="form-control" name="homePhone" [(ngModel)]="users.homePhone" [class.is-invalid]="homePhone.invalid && homePhone.touched">
-              <div *ngIf="homePhone.errors && (homePhone.invalid || homePhone.touched)">
+              <div *ngIf="homePhone.errors && (homePhone.invalid && homePhone.touched)">
                   <small class="text-danger" *ngIf="homePhone.errors.required">Required</small>
                   <small class="text-danger" *ngIf="homePhone.errors.pattern">Must be 10 digits</small>
               </div>
@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label>Mobile Phone</label>
                 <input type="tel" required #mobilePhone="ngModel" pattern="^\d{10}$" class="form-control" name="mobilePhone" [(ngModel)]="users.mobilePhone" [class.is-invalid]="mobilePhone.invalid && mobilePhone.touched">
-                <div *ngIf="mobilePhone.errors && (mobilePhone.invalid || mobilePhone.touched)">
+                <div *ngIf="mobilePhone.errors && (mobilePhone.invalid && mobilePhone.touched)">
                     <small class="text-danger" *ngIf="mobilePhone.errors.required">Required</small>
                     <small class="text-danger" *ngIf="mobilePhone.errors.pattern">Must be 10 digits</small>
                 </div>
