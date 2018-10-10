@@ -1,0 +1,85 @@
+<div class="dashboard-card" *ngIf="isParent">
+  <br>
+  <br>
+  <div>
+    <button mat-raised-button color="primary" (click)="createTechnology()">Create New Issue</button>
+    <mat-grid-list cols="1" rowHeight="700">
+      <mat-grid-tile>
+        <div class="mat-elevation-z1">
+          <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let row">
+                <div>
+                  <mat-radio-group class="example-radio-group" [(ngModel)]="selectedTech">
+                    <mat-radio-button class="example-radio-button" (click)="onSelect(row)" [value]="row._id" [checked]="row._id==selectedTechnolgyId">
+                      {{row.name}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+              </td>
+            </ng-container>
+
+            <!-- Auther Column -->
+            <ng-container matColumnDef="auther">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Auther</th>
+              <td mat-cell *matCellDef="let row">{{row.auther}}</td>
+            </ng-container>
+
+            <!-- Auther Column -->
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+              <td mat-cell *matCellDef="let row" class="tech-description">{{row.description}}</td>
+            </ng-container>
+
+            <!-- Auther Column -->
+            <ng-container matColumnDef="established">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Established</th>
+              <td mat-cell *matCellDef="let row">{{row.established}}</td>
+            </ng-container>
+
+
+            <!-- Auther Column -->
+            <ng-container matColumnDef="latestVersion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>LatestVersion</th>
+              <td mat-cell *matCellDef="let row">{{row.latestVersion}}</td>
+            </ng-container>
+
+            <!-- Auther Column -->
+            <ng-container matColumnDef="docURL">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>DocURL</th>
+              <td mat-cell *matCellDef="let row" class="tech-docURL">
+                <a [href]="row.docURL">{{row.docURL}}</a>
+              </td>
+            </ng-container>
+
+            <!-- Auther Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-icon-button color="primary">
+                  <mat-icon aria-label="Example icon-button" (click)="editTechnology(row)">edit</mat-icon>
+                </button>
+                <button mat-icon-button color="accent">
+                  <mat-icon aria-label="Example icon-button" (click)="deleteTechnology(row)">delete_forever</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10,25, 50, 100, 250]" showFirstLastButtons>
+          </mat-paginator>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+<div *ngIf="!isParent">
+  <router-outlet></router-outlet>
+</div>

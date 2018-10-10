@@ -1,0 +1,38 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="4" rowHeight="350px">
+    <mat-grid-tile *ngFor="let dashboard of dashboardItems" [colspan]="dashboard.cols" [rowspan]="dashboard.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <!-- 'My Projects'||'Peoples'||'Projects'||Reports -->
+          <mat-card-title>
+            <h3 class="custom_h3 pink-text">{{dashboard.title}} <span class="badge badge-primary badge-pill" [hidden]="!dashboard.isBadge">14</span></h3>
+
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>{{dashboard.controlName}}</button>
+              <!-- <button mat-menu-item>About</button> -->
+            </mat-menu>
+          </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <!-- <img class="animated bounce infinite" src="https://mdbootstrap.com/img/logo/mdb-transparent.png"> -->
+          <!-- <div class="style_prevu_kit"> <img src="https://i.ytimg.com/vi/ANM-dq5USTc/mqdefault_live.jpg" class="img-responsive">
+          </div> -->
+          <div class="animated lightSpeedIn">
+            <div class="view zoom">
+              <img src="../../assets/images/{{dashboard.iconSVG}}" class="img-fluid img-thumbnail" [alt]="dashboard.title">
+              <!-- <div class="mask flex-center">
+                    <p class="white-text">Zoom effect</p>
+                  </div> -->
+            </div>
+          </div>
+          <h2>{{dashboard.detailName}}</h2>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

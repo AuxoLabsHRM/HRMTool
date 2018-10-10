@@ -1,0 +1,61 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!isHandset$">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <div *ngIf="router.url != '/login'">
+        <a mat-button *ngFor="let sideNavLink of sideNavLinks" [routerLink]="sideNavLink.path" [routerLinkActive]="['mat-button-toggle-checked', 'active-route']"
+          #rla="routerLinkActive">
+          <span>{{sideNavLink.label}}</span>
+          <!-- <span>{{sideNavLink.label}}</span> -->
+          <!-- <mat-icon aria-label="Side nav toggle icon">{{link.icon}}</mat-icon> {{sideNavLink.label}} -->
+        </a>
+      </div>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon" (click)="togleMenu()" *ngIf="this.isHide&&this.authenticationService.isLoggedIn">menu</mat-icon>
+          <button mat-mini-fab *ngIf="!this.isHide">
+            <mat-icon aria-label="icon-button" (click)="togleMenu()">arrow_right_alt</mat-icon>
+          </button>
+        </button>
+        <span class="spacer"></span>
+        <h3 class="text-center">Techno World</h3>
+        <span class="spacer"></span>
+        <!-- After LoggedIn -->
+        <div *ngIf="this.authenticationService.isLoggedIn">
+          <a mat-button *ngFor="let link of linksAfterLogIn" [routerLink]="link.path" [routerLinkActive]="['mat-button-toggle-checked', 'active-route']"
+            #rla="routerLinkActive">
+            <mat-icon aria-label="Side nav toggle icon">{{link.icon}}</mat-icon> {{link.label}}
+          </a>
+        </div>
+        <!-- Before LoggedIn
+        <div *ngIf="!this.authenticationService.isLoggedIn">
+          <a mat-button *ngFor="let link of linksBeforeLogIn" [routerLink]="link.path" [routerLinkActive]="['mat-button-toggle-checked', 'active-route']"
+            #rla="routerLinkActive">
+            <mat-icon aria-label="Side nav toggle icon">{{link.icon}}</mat-icon>
+            {{link.label}}
+          </a>
+        </div> -->
+        <div *ngIf="!this.authenticationService.isLoggedIn">
+          <a mat-button [routerLink]="['/login']" [routerLinkActive]="['mat-button-toggle-checked', 'active-route']"
+            #rla="routerLinkActive">
+            <mat-icon aria-label="Side nav toggle icon">power_settings_new</mat-icon> Login
+          </a>
+        </div>
+        <a mat-button [routerLink]="['/login']" (click)="onLogout()" *ngIf="this.authenticationService.isLoggedIn">Logout</a>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div fxLayout="row" fxLayout.xs="column">
+      <mat-card fxFlex="100%;" fxFlex.xs="80%">
+        <!-- <mat-card class="dashboard-card"> -->
+        <router-outlet></router-outlet>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
