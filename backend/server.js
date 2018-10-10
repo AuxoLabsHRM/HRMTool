@@ -74,6 +74,11 @@ var LanguageController = require(__root + 'Routes/Languages/LanguageController')
 app.use('/api/language', LanguageController);
 /** ENDs **/
 
+// Leave Endpoint controller
+var LeaveController = require(__root + 'Routes/applyleave/applyleaveController');
+app.use('/api/applyleave', LeaveController);
+/** ENDs **/
+
 
 /** Creating Server **/
 /** STARTs **/

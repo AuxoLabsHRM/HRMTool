@@ -41,7 +41,7 @@ export class AddSkillComponent implements OnInit {
   ) {
 
     this.addskillForm = fb.group({
-      'skill': [null],
+      'skill': [null, Validators.required],
       'detail': [null, Validators.required]
     });
   }

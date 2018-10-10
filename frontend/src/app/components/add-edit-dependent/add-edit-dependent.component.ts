@@ -95,4 +95,8 @@ export class AddEditDependentComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     console.log(form);
   }
+    // Get date as current date
+    getToday(): string {
+      return new Date().toISOString().split('T')[0]
+    }
 }

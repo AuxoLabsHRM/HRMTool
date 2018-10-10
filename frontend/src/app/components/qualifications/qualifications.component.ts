@@ -43,7 +43,7 @@ export interface Language_data {
   styleUrls: ['./qualifications.component.css']
 })
 export class QualificationsComponent implements OnInit {
-
+  tableLength: any;
   userId: any = JSON.parse(localStorage.getItem('currentUser'))._id;
   displayedColumns1: string[] = ['qualification', 'institute', 'startdate', 'completedon', 'customColumn2'];
   dataSource1 = new MatTableDataSource();
@@ -204,6 +204,7 @@ export class QualificationsComponent implements OnInit {
   getskillDetails(id) {
     this.qualificationservice.getskilldetails(id).subscribe((res: any) => {
       this.dataSource.data = res.data;
+      this.tableLength = res.data.length;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -213,6 +214,7 @@ export class QualificationsComponent implements OnInit {
   geteducationDetails(id) {
     this.qualificationservice.geteducationdetails(id).subscribe((res: any) => {
       this.dataSource1.data = res.data;
+      this.tableLength = res.data.length;
       this.dataSource1.paginator = this.paginator;
       this.dataSource1.sort = this.sort;
     })
@@ -222,6 +224,7 @@ export class QualificationsComponent implements OnInit {
   getlanguageDtl(id) {
     this.qualificationservice.getlanguageDtl(id).subscribe((res: any) => {
       this.dataSource3.data = res.data;
+      this.tableLength = res.data.length;
       this.dataSource3.paginator = this.paginator;
       this.dataSource3.sort = this.sort;
     })

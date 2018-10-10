@@ -43,8 +43,8 @@ export class AddEducationdtlComponent implements OnInit {
     this.educationdtlForm = fb.group({
       'qualification': [null, Validators.required],
       'institute': [null, Validators.required],
-      'fromDate': [null],
-      'endDate': [null]
+      'fromDate': [null, Validators.required],
+      'endDate': [null, Validators.required]
     });
   }
 

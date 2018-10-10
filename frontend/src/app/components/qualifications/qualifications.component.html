@@ -7,13 +7,13 @@
           <button mat-flat-button color="primary" (click)="addskill(skillDetails)">  Add Skill</button>
         </div>
         <br/>
-        <div class="example-header">
+        <div class="example-header" *ngIf="dataSource.data.length > 0">
           <mat-form-field>
             <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
           </mat-form-field>
         </div>
 
-        <div class="example-container mat-elevation-z8">
+        <div class="example-container mat-elevation-z8" *ngIf="dataSource.data.length > 0" >
 
           <mat-table [dataSource]="dataSource" matSort>
 
@@ -52,7 +52,9 @@
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
-
+        <div class="text-center" *ngIf="dataSource.data.length == 0">
+          No records found for skill
+        </div>
       </div>
     </mat-tab>
     <mat-tab label="Education">
@@ -62,10 +64,10 @@
           <button mat-flat-button color="primary" (click)="addeducationdtl()">Add Education</button>
         </div>
         <br/>
-        <mat-form-field>
+        <mat-form-field *ngIf="dataSource1.data.length > 0">
           <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
         </mat-form-field>
-
+        <div *ngIf="dataSource1.data.length > 0">
         <mat-table [dataSource]="dataSource1" matSort>
 
           <!-- Qualification Column -->
@@ -109,6 +111,10 @@
           <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
         </mat-table>
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+        <div class="text-center" *ngIf="dataSource1.data.length == 0">
+          No records found for education
+        </div>
       </div>
     </mat-tab>
     <mat-tab label="Languages" class="tab-pane active">
@@ -119,13 +125,11 @@
             <button mat-flat-button color="primary" (click)="addlanguage()">Add Language</button>
           </div>
           <br/>
-          <mat-form-field>
+          <mat-form-field *ngIf="dataSource3.data.length > 0">
             <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
           </mat-form-field>
-
+          <div *ngIf="dataSource3.data.length > 0">
           <mat-table [dataSource]="dataSource3" matSort>
-
-
             <!-- Language Column -->
             <ng-container matColumnDef="language">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Language</mat-header-cell>
@@ -178,6 +182,10 @@
             <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
           </mat-table>
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+          <div class="text-center" *ngIf="dataSource.data.length == 0">
+            No records found for language
+          </div>
         </div>
       </div>
     </mat-tab>

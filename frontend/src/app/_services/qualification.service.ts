@@ -84,7 +84,17 @@ export class QualificationService {
     deleteLanguage(id: any){
       return this.http.delete(`${environment.apiUrl}/api/language/` + id).pipe(catchError(this.handleError));
     }    
+  // Leave Management
 
+  // Get leave details
+  getleavedtl(id: any){
+    return this.http.get(`${environment.apiUrl}/api/applyleave/`+ id).pipe(catchError(this.handleError));
+  }
+   
+  // Apply leave
+   applyleave(data): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/api/applyleave`, JSON.parse(data)).pipe(catchError(this.handleError));
+  }
   // Handle Error
   public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
