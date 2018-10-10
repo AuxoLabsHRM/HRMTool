@@ -21,9 +21,9 @@
       <div class="row">
         <div class="example-container">
           <mat-form-field>
-            <input matInput placeholder="Institute" formControlName="institute" required/>
+            <input matInput placeholder="Institute" formControlName="institute" required />
             <mat-error>
-              <span *ngIf="(!educationdtlForm.get('institute').valid && educationdtlForm.get('institute').touched) ||educationdtlForm.get('institute').errors?.required">
+              <span *ngIf="(!educationdtlForm.get('institute').valid && educationdtlForm.get('institute').touched) || educationdtlForm.get('institute').errors?.required">
                 Please enter the Institute
               </span>
             </mat-error>
@@ -38,6 +38,11 @@
               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+              <span *ngIf="(!educationdtlForm.get('fromDate').valid && educationdtlForm.get('fromDate').touched) || educationdtlForm.get('fromDate').errors?.required">
+                Please select from date
+              </span>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -49,6 +54,11 @@
               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
+            <mat-error>
+              <span *ngIf="(!educationdtlForm.get('endDate').valid && educationdtlForm.get('endDate').touched) || educationdtlForm.get('endDate').errors?.required">
+                Please select from date
+              </span>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -60,7 +70,8 @@
           <button mat-raised-button (click)="close()">CANCEL</button>
           &nbsp;&nbsp;
           <!-- <button mat-raised-button color="accent" [disabled]="!educationdtlForm.valid" (click)="createupdateeducation()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button> -->
-          <button mat-raised-button color="accent" (click)="createupdateeducation()">{{isAction == "SAVE" ? 'SAVE' : 'UPDATE'}}</button>
+          <button mat-raised-button color="accent" (click)="createupdateeducation()">{{isAction == "SAVE" ? 'SAVE' :
+            'UPDATE'}}</button>
         </div>
       </div>
     </form>

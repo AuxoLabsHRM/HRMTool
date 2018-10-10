@@ -27,3 +27,8 @@
     background-color: #006400 !important;
     color: #fff;
 }
+.leaveblc_container{
+    border: 1px solid gray;
+    margin: 0px 21px;
+    height: 312px;   
+}

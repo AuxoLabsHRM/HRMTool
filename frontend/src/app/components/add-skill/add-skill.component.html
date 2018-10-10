@@ -10,6 +10,9 @@
                 {{skill.name}}
               </mat-option>
             </mat-select>
+            <mat-error>
+              <span *ngIf="(!addskillForm.get('skill').valid && addskillForm.get('skill').touched) || addskillForm.get('skill').errors?.required">Please select skill</span>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
