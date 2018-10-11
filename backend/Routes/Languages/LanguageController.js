@@ -18,9 +18,9 @@ router.post('/', function (req, res) {
         },
         function (err, language) {
             if (err) {
-                res.status(500).json({ "ResultTye": 2, "Message": "Error in add language detail", "data": [] });
+                res.status(500).json({ "ResultType": 2, "Message": "Error in add language detail", "data": [] });
             } else {
-                res.status(200).json({ "ResultTye": 1, "Message": "Succesfully language detail added", "data": language });
+                res.status(200).json({ "ResultType": 1, "Message": "Succesfully language detail added", "data": language });
             }
         });
 });
@@ -29,11 +29,11 @@ router.post('/', function (req, res) {
 router.get('/:userId', function (req, res) {
     Language.find({ userId : req.params.userId }, function (err, languages) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching language details", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching language details", "data": [] });
         } else if (!languages) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No language detail found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No language detail found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching language details", "data": languages });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching language details", "data": languages });
         }
     });
 });
@@ -41,11 +41,11 @@ router.get('/:userId', function (req, res) {
 router.get('/lan/:id', function (req, res) {
     Language.findById(req.params.id, function (err, language) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching language detail", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching language detail", "data": [] });
         } else if (!language) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No language detail found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No language detail found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching language detail", "data": language });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching language detail", "data": language });
         }
     });
 });
@@ -54,9 +54,9 @@ router.get('/lan/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     Language.findByIdAndRemove(req.params.id, function (err, language) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in remove language detail"});
+            res.status(500).json({ "ResultType": 2, "Message": "Error in remove language detail"});
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully language detail deleted"});
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully language detail deleted"});
         }
     });
 });
@@ -66,9 +66,9 @@ router.put('/:id', function (req, res) {
         new: true
     }, function (err, language) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in update language detail", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in update language detail", "data": [] });
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully language detail update", "data": language });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully language detail update", "data": language });
         }
     });
 });

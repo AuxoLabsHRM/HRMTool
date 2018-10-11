@@ -19,9 +19,9 @@ router.post('/', function (req, res) {
         },
         function (err, contact) {
             if (err) {
-                res.status(500).json({ "ResultTye": 2, "Message": "Error in add emergency contact", "data": [] });
+                res.status(500).json({ "ResultType": 2, "Message": "Error in add emergency contact", "data": [] });
             } else {
-                res.status(200).json({ "ResultTye": 1, "Message": "Succesfully add emergency contact", "data": contact });
+                res.status(200).json({ "ResultType": 1, "Message": "Succesfully add emergency contact", "data": contact });
             }
         });
 });
@@ -31,11 +31,11 @@ router.get('/:userId', function (req, res) {
     Emergency.find({ userId : req.params.userId }, function (err, contacts) {
         // var uniqContacts = _.uniqBy(contacts, 'name');
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching emergency contact", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching emergency contact", "data": [] });
         } else if (!contacts) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No Contact found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No Contact found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching emergency contact", "data": contacts });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching emergency contact", "data": contacts });
         }
     });
 });
@@ -43,11 +43,11 @@ router.get('/:userId', function (req, res) {
 router.get('/contact/:id', function (req, res) {
     Emergency.findById(req.params.id, function (err, contact) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching emergency contact", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching emergency contact", "data": [] });
         } else if (!contact) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No Contact found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No Contact found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching emergency contact", "data": contact });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching emergency contact", "data": contact });
         }
     });
 });
@@ -56,9 +56,9 @@ router.get('/contact/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     Emergency.findByIdAndRemove(req.params.id, function (err, user) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in remove emergency contact"});
+            res.status(500).json({ "ResultType": 2, "Message": "Error in remove emergency contact"});
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully emergency contact deleted"});
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully emergency contact deleted"});
         }
     });
 });
@@ -68,9 +68,9 @@ router.put('/:id', function (req, res) {
         new: true
     }, function (err, contact) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in update emergency contact", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in update emergency contact", "data": [] });
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully update emergency contact", "data": contact });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully update emergency contact", "data": contact });
         }
     });
 });
