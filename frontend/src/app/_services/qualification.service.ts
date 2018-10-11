@@ -95,6 +95,12 @@ export class QualificationService {
    applyleave(data): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/applyleave`, JSON.parse(data)).pipe(catchError(this.handleError));
   }
+
+  // Get leavereqlist
+    getleavereqlist(id: any){
+      return this.http.get(`${environment.apiUrl}/api/applyleave/` + id).pipe(catchError(this.handleError));
+    }
+
   // Handle Error
   public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

@@ -29,6 +29,8 @@ import { LanguagesComponent } from './components/languages/languages.component';
 import { AlertComponents } from './alert/alert.component';
 import { ApplyLeaveComponent } from './components/leavemanagement/apply-leave/apply-leave.component';
 import { LeaveComponent } from './components/leavemanagement/leave/leave.component';
+import { LeaveapprovalComponent } from './components/leavemanagement/leaveapproval/leaveapproval.component';
+import { EmployeeactivateComponent } from './components/admin/employeeactivate/employeeactivate.component';
 
 const routes: Routes = [
   {
@@ -121,14 +123,24 @@ const routes: Routes = [
     component: LanguagesComponent
     },
     {
+      path: 'Activate',
+      component: EmployeeactivateComponent,
+      data: { sideNaveLabel: 'Activate- Admin'}
+    },
+    {
+      path: 'applyleave-Admin',
+      component: LeaveapprovalComponent,
+      data: { sideNaveLabel: 'Apply leave-Admin'}
+    },
+    {
       path: 'leave',
       component: LeaveComponent,
       data: { sideNaveLabel: 'Leave' }
-      },
-      {
+    },
+    {
       path: 'Applyleave',
       component: ApplyLeaveComponent,
-      },
+    },
   {
     path: '**',
     component: PageNotFoundComponent
@@ -166,5 +178,7 @@ export const routingComponents = [
   LanguagesComponent,
   AlertComponents,
   ApplyLeaveComponent,
-  LeaveComponent
+  LeaveComponent,
+  LeaveapprovalComponent,
+  EmployeeactivateComponent
 ];

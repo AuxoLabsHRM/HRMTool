@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTabChangeEvent, MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDatepickerModule, MatDialogRef,MatSnackBar } from '@angular/material';
+import {FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatTabChangeEvent, MatPaginator, MatSort, MatTableDataSource, 
+  MatDialog, MatDatepickerModule, MatDialogRef,MatSnackBar } from '@angular/material';
 import { validateConfig } from '@angular/router/src/config';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
@@ -20,7 +21,8 @@ export interface Type {
 export class ApplyLeaveComponent implements OnInit {
   userId: any = JSON.parse(localStorage.getItem('currentUser'))._id;
   applyleaveForm: FormGroup;
-  leavecount = 0;
+  value = 0;
+  disabled: any;
   types: Type[] = [
     {id: '0', name: 'Sick Leave'},
     {id: '1', name: 'Casual Leave'}
@@ -42,6 +44,7 @@ export class ApplyLeaveComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.applyleaveForm)
   }
 
   error: any ='End Date greater then from date';
@@ -52,12 +55,12 @@ export class ApplyLeaveComponent implements OnInit {
     leaveObj['fromDate'] = this.applyleaveForm.controls.fromDate.value,
     leaveObj['toDate'] = this.applyleaveForm.controls.toDate.value,
     leaveObj['note'] = this.applyleaveForm.controls.note.value,
-    leaveObj['leave'] = this.applyleaveForm.controls.leave.value
+    leaveObj['days'] = this.applyleaveForm.controls.leave.value
     let selectedleavetypeID = this.applyleaveForm.controls.leavetype.value
     let resultleave = this.types.filter(function (data) {
       return data.id == selectedleavetypeID
     })
-    leaveObj['leavetype'] = (resultleave) ? resultleave[0] : {}
+    leaveObj['leaveType'] = (resultleave) ? resultleave[0] : {}
     if(this.applyleaveForm.valid){
       if(new Date(this.applyleaveForm.controls['toDate'].value)<new Date(this.applyleaveForm.controls['fromDate'].value)){
         this.snackBar.open(this.error, '', {
@@ -99,8 +102,8 @@ export class ApplyLeaveComponent implements OnInit {
     var diff = Math.abs(date1.getTime() - date2.getTime());
     var limit = (date1 == date2) ? 0 : 1;
     
-     this.leavecount = Math.ceil(diff / (1000 * 3600 * 24))+ limit; 
-    console.log(this.leavecount);
+     this.value = Math.ceil(diff / (1000 * 3600 * 24))+ limit; 
+    console.log(this.value);
   
   }
 }

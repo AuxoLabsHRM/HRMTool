@@ -1,0 +1,73 @@
+<div style="text-align:center"> 
+  <strong>Employee List</strong>
+</div>
+<div class="leaveapp_container">
+  <!-- <div *ngIf="dataSource.date.length > 0"> -->
+  <div>
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Employee ID Coloumn -->
+        <!-- <ng-container matColumnDef="employeeid">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Employee ID </mat-header-cell>
+          <mat-cell *matCellDef="let active"> {{active.employeeid}}</mat-cell>
+        </ng-container> -->
+        <!-- Employee name Coloumn -->
+        <ng-container matColumnDef="employeeName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Name </mat-header-cell>
+          <mat-cell *matCellDef="let active"> {{active.employeeName}}</mat-cell>
+        </ng-container>
+        <!-- Date of joining Column -->
+        <ng-container matColumnDef="dateofJoining">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Joining </mat-header-cell>
+          <mat-cell *matCellDef="let active"> {{active.dateofJoining}}</mat-cell>
+        </ng-container>
+
+        <!--  Date of releaving Column -->
+        <ng-container matColumnDef="dateofReleaving">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Releaving </mat-header-cell>
+          <mat-cell *matCellDef="let active"> {{active.dateofReleaving}}</mat-cell>
+        </ng-container>
+
+        <!--Status-->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+          <mat-cell *matCellDef="let active"> {{active.status}}</mat-cell>
+        </ng-container>
+        
+        <!--Reason Column -->
+        <!-- <ng-container matColumnDef="reason">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Reason</mat-header-cell>
+          <mat-cell *matCellDef="let active"> {{active.reason}}</mat-cell>
+        </ng-container> -->
+
+        <!-- Action Coloumn -->
+        <ng-container matColumnDef="customColumn">
+          <mat-header-cell *matHeaderCellDef>
+            Action
+          </mat-header-cell>
+          <mat-cell *matCellDef="let active">
+            &nbsp;&nbsp;
+            <button mat-flat-button  color="primary" (click)="activateemp()">Activate</button>
+            &nbsp;
+            <button mat-flat-button class="right" color="warn" (click)="deactivateemp()">Deactivate</button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+    <!-- <div class="text-center" *ngIf="dataSource.data.length == 0">
+        No records found
+    </div> -->
+  </div>
+</div>

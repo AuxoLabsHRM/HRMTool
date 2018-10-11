@@ -6,13 +6,15 @@ import { Router } from '@angular/router';
 import { tick } from '@angular/core/testing';
 
 export interface empleavedtl {
-  // employeeid: string;
-  // employeeName: string;
   fromDate: string;
   toDate: string;
   note: string;
   leave: string;
-  leave_status: string;
+  status: string;
+}
+export interface LeaveStatus {
+  id: string;
+  name: string;
 }
 
 @Component({
@@ -21,8 +23,20 @@ export interface empleavedtl {
   styleUrls: ['./leave.component.css']
 })
 export class LeaveComponent implements OnInit {
-  
   userId: any = JSON.parse(localStorage.getItem('currentUser'))._id;
+  leave_status: any;
+  cancelbutton: any;
+  noaction: any;
+  tableLength: any;
+  status: any;
+  nonstatus = false;
+  cancelaction = true;
+  leavestatus: LeaveStatus[] =[
+    {id: '0', name: 'Pending'},
+    {id: '1', name: 'Approved'},
+    {id: '2', name: 'Declined'},
+    {id: '3', name: 'Cancel'}
+  ]
   
   displayedColumns: string[] = ['fromDate', 'toDate', 'note', 'leave','status', 'customColumn'];
   dataSource = new MatTableDataSource();
@@ -48,10 +62,9 @@ export class LeaveComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-    // console.log(this.sort);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    console.log(this.sort);
   }
 
 
@@ -74,8 +87,18 @@ export class LeaveComponent implements OnInit {
   }
 
   getleavedtl(id){
+    // Get leave details
     this.qualificationservice.getleavedtl(id).subscribe((res: any) =>{
+
       this.dataSource.data = res.data;
+      // if(res.data[0].status == "1") {
+        this.status = this.leavestatus[parseInt(res.data[0].status) - 1].name;
+        this.nonstatus = false;
+        this.cancelaction = true;
+      // }
+      this.tableLength = res.data.length;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 

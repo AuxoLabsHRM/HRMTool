@@ -50,6 +50,8 @@ import { DataServiceService } from './data-service.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { AlertComponents } from './alert/alert.component';
 import { AddEditDependentComponent } from './components/add-edit-dependent/add-edit-dependent.component';
+import { EmployeeactivateComponent } from './components/admin/employeeactivate/employeeactivate.component';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { AddEditDependentComponent } from './components/add-edit-dependent/add-e
     MyNavbarComponent,
     MyTableComponent,
     AlertComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    EmployeeactivateComponent
   ],
   imports: [
     BrowserModule,
