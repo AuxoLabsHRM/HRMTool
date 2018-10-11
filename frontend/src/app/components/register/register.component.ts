@@ -44,7 +44,8 @@ export class RegisterComponent implements OnInit {
       name: this.registerForm.value.name,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      roleType: 'User'
+      roleType: 'User',
+      isAvailable: true
     };
 
     this.loading = true;
