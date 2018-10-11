@@ -11,6 +11,7 @@ var AvailableLeave = require('./availableLeave');
 
 router.post('/', function (req, res) {
     ApplyLeave.create({
+        user: req.body.userId,
         userId: req.body.userId,
         fromDate: req.body.fromDate,
         toDate: req.body.toDate,
@@ -52,19 +53,8 @@ router.post('/', function (req, res) {
 
 });
 
-router.get('/:userId', function(req, res){
-    ApplyLeave.aggregate([
-        { "$match": { "userId" : req.params.userId } },
-        {
-            $lookup:
-            {
-                from: 'AvailableLeave',
-                localField: "userId",
-                foreignField: "userId",
-                as: 'available'
-            }
-        }
-    ]).exec((err, Leaves) => {
+router.get('/:userId', function (req, res) {
+    ApplyLeave.findOne({ "userId": req.params.userId }).populate('user').exec(function (err, Leaves) {
         if (err) {
             res.status(500).json({ "ResultTye": 2, "Message": "Error occurred while getting leave detail", "data": [] });
         } else if (!Leaves) {
@@ -73,7 +63,18 @@ router.get('/:userId', function(req, res){
             res.status(200).json({ "ResultTye": 1, "Message": "Leave details get successfully", "data": Leaves });
         }
     });
-    // ApplyLeave.find({ userId : req.params.userId }, function (err, Leaves) {
+    // ApplyLeave.aggregate([
+    //     { "$match": { "userId" : req.params.userId } },
+    //     {
+    //         $lookup:
+    //         {
+    //             from: 'User',
+    //             localField: "userId",
+    //             foreignField: "_id",
+    //             as: 'user'
+    //         }
+    //     }
+    // ]).exec((err, Leaves) => {
     //     if (err) {
     //         res.status(500).json({ "ResultTye": 2, "Message": "Error occurred while getting leave detail", "data": [] });
     //     } else if (!Leaves) {

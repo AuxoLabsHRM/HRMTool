@@ -10,8 +10,7 @@ var UserSchema = new mongoose.Schema({
     type: String
   },
   isAvaliable: {
-    type: Boolean,
-    default: false
+    type: Boolean
   }
 });
 

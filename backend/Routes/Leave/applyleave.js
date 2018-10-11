@@ -1,13 +1,9 @@
 var mongoose = require('mongoose')
 var applyLeaveSchema = new mongoose.Schema({
-    // postedBy: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'AvailableLeave'
-    // },
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     userId: String,
     fromDate: {
         type: Date
