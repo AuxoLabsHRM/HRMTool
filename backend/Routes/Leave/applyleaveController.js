@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
 });
 
 router.get('/:userId', function (req, res) {
-    ApplyLeave.findOne({ "userId": req.params.userId }).populate('user').exec(function (err, Leaves) {
+    ApplyLeave.find({ "userId": req.params.userId }).populate('user').exec(function (err, Leaves) {
         if (err) {
             res.status(500).json({ "ResultTye": 2, "Message": "Error occurred while getting leave detail", "data": [] });
         } else if (!Leaves) {
