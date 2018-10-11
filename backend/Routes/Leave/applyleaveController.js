@@ -76,11 +76,11 @@ router.get('/:userId', function (req, res) {
     //     }
     // ]).exec((err, Leaves) => {
     //     if (err) {
-    //         res.status(500).json({ "ResultTye": 2, "Message": "Error occurred while getting leave detail", "data": [] });
+    //         res.status(500).json({ "ResultType": 2, "Message": "Error occurred while getting leave detail", "data": [] });
     //     } else if (!Leaves) {
-    //         res.status(404).json({ "ResultTye": 1, "Message": "No records found", "data": [] }); 
+    //         res.status(404).json({ "ResultType": 1, "Message": "No records found", "data": [] }); 
     //     } else {
-    //         res.status(200).json({ "ResultTye": 1, "Message": "Leave details get successfully", "data": Leaves });
+    //         res.status(200).json({ "ResultType": 1, "Message": "Leave details get successfully", "data": Leaves });
     //     }
     // });
 });

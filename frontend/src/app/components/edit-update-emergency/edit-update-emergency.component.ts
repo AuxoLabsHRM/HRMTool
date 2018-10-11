@@ -33,7 +33,7 @@ export class EditUpdateEmergencyComponent implements OnInit {
     this._listService.getContact(id).subscribe(
       (res) => {
       console.log('data', res);
-      if (res.ResultTye == 1) {
+      if (res.ResultType == 1) {
         this.snackBar.open(res.Message, '', {
           duration: 2000,
           verticalPosition: 'top'
@@ -58,7 +58,7 @@ export class EditUpdateEmergencyComponent implements OnInit {
       this.users.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
       this._listService.addContact(this.users).subscribe(res => {
         console.log('data', res);
-        if (res.ResultTye == 1) {
+        if (res.ResultType == 1) {
           this.snackBar.open(res.Message, '', {
             duration: 2000,
             verticalPosition: 'top'
@@ -79,7 +79,7 @@ export class EditUpdateEmergencyComponent implements OnInit {
     } else {
       this._listService.updateContact(this.id, this.users).subscribe(res => {
         console.log('data', res);
-        if (res.ResultTye == 1) {
+        if (res.ResultType == 1) {
           this.snackBar.open(res.Message, '', {
             duration: 2000,
             verticalPosition: 'top'

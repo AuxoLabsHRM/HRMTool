@@ -79,7 +79,7 @@ export class LanguagesComponent implements OnInit {
       if(this.languageForm.valid){
       this.qualificationservice.createlanguage(JSON.stringify(saveobj)).subscribe((response) => {
         console.log(response);
-        if (response.ResultTye == 1) {
+        if (response.ResultType == 1) {
           this.dialogRef.close();
           this.snackBar.open(response.Message, '', {
             duration: 3000,
@@ -100,7 +100,7 @@ export class LanguagesComponent implements OnInit {
     else if (this.isAction == 'UPDATE') {
       this.qualificationservice.updatelanguage(this.dataoflanguage.data._id, saveobj).subscribe((response) => {
         console.log(response);
-        if (response.ResultTye == 1) {
+        if (response.ResultType == 1) {
           this.dialogRef.close();
           this.snackBar.open(response.Message, '', {
             duration: 3000,

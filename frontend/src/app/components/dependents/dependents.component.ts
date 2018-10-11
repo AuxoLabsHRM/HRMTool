@@ -44,7 +44,7 @@ export class DependentsComponent implements OnInit {
   getAllDependent(userId) {
     this._listService.getAllDependent(userId).subscribe(
       (res) => {
-      if (res.ResultTye == 1) {
+      if (res.ResultType == 1) {
         this.dataSource.data = res.data;
         this.tableLength = res.data.length;
         this.dataSource.paginator = this.paginator;
@@ -77,7 +77,7 @@ export class DependentsComponent implements OnInit {
       if (res) {
     this._listService.deleteDependent(id).subscribe(
       (res) => {
-      if (res.ResultTye == 1) {
+      if (res.ResultType == 1) {
         this.snackBar.open(res.Message, '', {
           duration: 3000,
           verticalPosition: 'top'

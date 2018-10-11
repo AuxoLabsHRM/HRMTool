@@ -71,7 +71,7 @@ export class AddSkillComponent implements OnInit {
       if(this.addskillForm.valid){
       this.qualificationservice.createskill(JSON.stringify(obj1)).subscribe((response) => {
         console.log(response);
-        if (response.ResultTye == 1) {
+        if (response.ResultType == 1) {
           this.dialogRef.close();
           this.snackBar.open(response.Message, '', {
             duration: 3000,
@@ -92,7 +92,7 @@ export class AddSkillComponent implements OnInit {
     else if (this.isAction == 'UPDATE') {
       this.qualificationservice.updateskillitem(this.dataColl.data._id, obj1).subscribe((response) => {
         console.log(response);
-        if (response.ResultTye == 1) {
+        if (response.ResultType == 1) {
       this.dialogRef.close();
           this.snackBar.open(response.Message, '', {
             duration: 3000,

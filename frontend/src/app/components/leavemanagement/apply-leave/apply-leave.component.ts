@@ -73,7 +73,7 @@ export class ApplyLeaveComponent implements OnInit {
      }
      this.qualificationservice.applyleave(JSON.stringify(leaveObj)).subscribe((response) => {
       console.log(response);
-      if (response.ResultTye == 1) {
+      if (response.ResultType == 1) {
         this.snackBar.open(response.Message, '', {
           duration: 3000,
           verticalPosition: 'top'

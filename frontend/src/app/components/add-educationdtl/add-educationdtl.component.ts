@@ -84,7 +84,7 @@ export class AddEducationdtlComponent implements OnInit {
       if(this.educationdtlForm.valid){
       this.qualificationservice.createeducation(JSON.stringify(obj1)).subscribe((response) => {
         console.log(response);
-        if (response.ResultTye == 1) {
+        if (response.ResultType == 1) {
       this.dialogRef.close();
           this.snackBar.open(response.Message, '', {
             duration: 3000,
@@ -105,7 +105,7 @@ export class AddEducationdtlComponent implements OnInit {
     else if (this.isAction == 'UPDATE') {
       this.qualificationservice.updateeducationitem(this.dataofeducation.data._id, JSON.stringify(obj1)).subscribe((response) => {
         console.log(response);
-        if (response.ResultTye == 1) {
+        if (response.ResultType == 1) {
           this.dialogRef.close();
           this.snackBar.open(response.Message, '', {
             duration: 3000,

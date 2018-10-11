@@ -92,7 +92,7 @@ export class LeaveapprovalComponent implements OnInit {
   approveleave(id,statusid){
     let data = {"status" : statusid}
     this.qualificationservice.approveleave(id,data).subscribe((res: any) => {
-      if(res.ResultTye == 1){
+      if(res.ResultType == 1){
         this.snackBar.open(res.Message, '', {
           duration: 200,
           verticalPosition: 'top'

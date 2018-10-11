@@ -86,7 +86,7 @@ export class EmployeeactivateComponent implements OnInit {
       dialogRef.afterClosed().subscribe((res: any) => {
         if(res){
           this.qualificationservice.deleteeducation(id).subscribe((res: any) => {
-            if (res.ResultTye == 1) {
+            if (res.ResultType == 1) {
               this.snackBar.open(res.Message, '', {
                 duration: 3000,
                 verticalPosition: 'top'
@@ -126,7 +126,7 @@ export class EmployeeactivateComponent implements OnInit {
       dialogRef.afterClosed().subscribe((res: any) => {
         if(res){
           this.qualificationservice.deleteeducation(id).subscribe((res: any) => {
-            if (res.ResultTye == 1) {
+            if (res.ResultType == 1) {
               this.snackBar.open(res.Message, '', {
                 duration: 3000,
                 verticalPosition: 'top'
