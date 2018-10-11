@@ -4,6 +4,7 @@ import { ApplyLeaveComponent } from '../apply-leave/apply-leave.component';
 import { QualificationService } from '../../../_services/qualification.service';
 import { Router } from '@angular/router';
 import { tick } from '@angular/core/testing';
+import { remove, find, forEach } from 'lodash';
 
 export interface empleavedtl {
   fromDate: string;
@@ -31,12 +32,7 @@ export class LeaveComponent implements OnInit {
   status: any;
   nonstatus = false;
   cancelaction = true;
-  leavestatus: LeaveStatus[] =[
-    {id: '0', name: 'Pending'},
-    {id: '1', name: 'Approved'},
-    {id: '2', name: 'Declined'},
-    {id: '3', name: 'Cancel'}
-  ]
+  leaveStatus: any;
   
   displayedColumns: string[] = ['fromDate', 'toDate', 'note', 'leave','status', 'customColumn'];
   dataSource = new MatTableDataSource();
@@ -50,8 +46,6 @@ export class LeaveComponent implements OnInit {
     private router: Router
   ) { }
   
-
-
   ngOnInit() {
     this.getleavedtl(this.userId);
   }
@@ -64,7 +58,6 @@ export class LeaveComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    console.log(this.sort);
   }
 
 
@@ -87,15 +80,22 @@ export class LeaveComponent implements OnInit {
   }
 
   getleavedtl(id){
+    let leaveStatus = [
+      {id: '1', name: 'Pending'},
+      {id: '2', name: 'Approved'},
+      {id: '3', name: 'Declined'},
+      {id: '4', name: 'Cancel'}
+    ];
     // Get leave details
     this.qualificationservice.getleavedtl(id).subscribe((res: any) =>{
-
-      this.dataSource.data = res.data;
-      // if(res.data[0].status == "1") {
-        this.status = this.leavestatus[parseInt(res.data[0].status) - 1].name;
-        this.nonstatus = false;
-        this.cancelaction = true;
-      // }
+      res.data.forEach(function (value,index) {
+        leaveStatus.forEach(function (values) {
+          if (value.status == values.id) {
+            res.data[index].statusText = values.name;
+          }
+        });
+      });
+    this.dataSource.data = res.data;
       this.tableLength = res.data.length;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

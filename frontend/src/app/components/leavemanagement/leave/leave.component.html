@@ -35,7 +35,7 @@
     <!-- Status-->
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-      <mat-cell *matCellDef="let leave"> {{this.status}}</mat-cell>
+      <mat-cell *matCellDef="let leave"> {{leave.statusText}}</mat-cell>
     </ng-container>
     <!-- Action Coloumn -->
     <ng-container matColumnDef="customColumn">
@@ -44,8 +44,8 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let leave">
         &nbsp;&nbsp;
-          <button mat-flat-button color="warn" *ngIf="this.status == 'Pending'" (click)="leavecancel()">Cancel</button> &nbsp;
-          <button mat-flat-button color="warn" *ngIf="!this.status == 'Pending'"> -- </button>
+          <button mat-flat-button color="warn" *ngIf="leave.status == '1'" (click)="leavecancel()">Cancel</button> &nbsp;
+          <span *ngIf="leave.status != '1'"> -- </span>
       </mat-cell>
     </ng-container>
 
