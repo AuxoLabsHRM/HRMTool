@@ -101,6 +101,17 @@ export class QualificationService {
       return this.http.get(`${environment.apiUrl}/api/applyleave/` + id).pipe(catchError(this.handleError));
     }
 
+  // Get available leave
+    getavailableleave(id: any){
+      return this.http.get(`${environment.apiUrl}/api/availableLeave/` + id).pipe(catchError(this.handleError));
+    }
+
+   // Approve leave 
+   
+     // Create skill
+  approveleave(id: any, data): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/api/applyleave/status/` + id, data).pipe(catchError(this.handleError));
+  }
   // Handle Error
   public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
