@@ -21,12 +21,12 @@ router.post('/', function (req, res) {
     },
         function (err, Leave) {
             if (err) {
-                res.status(500).json({ "ResultType": 2, "Message": "Error occured while applying leave"});
+                res.status(500).json({ "ResultType": 2, "Message": "Error occured while applying leave" });
             } else {
                 AvailableLeave.find({ userId: req.body.userId }, function (err, Leaves) {
                     console.log(Leaves, 'Leaves');
                     if (err) {
-                        res.status(500).json({ "ResultType": 2, "Message": "Error occured while applying leave"});
+                        res.status(500).json({ "ResultType": 2, "Message": "Error occured while applying leave" });
                     } else {
                         if (req.body.leaveType.name == ("sickLeave" || "casualLeave")) {
                             if (req.body.leaveType.name == "sickLeave") {
@@ -90,9 +90,39 @@ router.put('/status/:id', function (req, res) {
         new: true
     }, function (err, Leave) {
         if (err) {
-            res.status(500).json({ "ResultType": 2, "Message": "Error in update Leave detail", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in update Leave", "data": [] });
         } else {
-            res.status(200).json({ "ResultType": 1, "Message": "Succesfully Leave detail update", "data": Leave });
+            ApplyLeave.findById(req.params.id, function (err, available) {
+                if (err) {
+                    res.status(500).json({ "ResultType": 2, "Message": "Error in update Leave" });
+                } else {
+                    AvailableLeave.find({ userId: available.userId }, function (err, Leaves) {
+                        if (err) {
+                            res.status(500).json({ "ResultType": 2, "Message": "Error in update Leave" });
+                        } else {
+                            if (req.body.status == "3" || req.body.status == "4") {
+                                if (available.leaveType.name == "sickLeave") {
+                                    var count = Leaves[0].sickLeave + available.days;
+                                    var leavevalues = { $set: { sickLeave: count } };
+                                } else if (available.leaveType.name == "casualLeave") {
+                                    var count = Leaves[0].casualLeave + available.days;
+                                    var leavevalues = { $set: { casualLeave: count } };
+                                }
+                                AvailableLeave.findOneAndUpdate({ userId: available.userId }, leavevalues, {new: true}, function (err, response) {
+                                    if (err) {
+                                        res.status(500).json({ "ResultType": 2, "Message": "Error in update Leave" });
+                                    } else {
+                                        res.status(200).json({ "ResultType": 1, "Message": "Leave update successfully" });
+                                    }
+                                });
+                            } else {
+                                res.status(200).json({ "ResultType": 1, "Message": "Leave update successfully" });
+                            }
+                        }
+                    })
+                }
+            });
+
         }
     });
 });
