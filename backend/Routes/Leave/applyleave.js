@@ -1,13 +1,5 @@
 var mongoose = require('mongoose')
 var applyLeaveSchema = new mongoose.Schema({
-    // postedBy: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'AvailableLeave'
-    // },
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
     userId: String,
     fromDate:{
         type: Date
@@ -20,7 +12,7 @@ var applyLeaveSchema = new mongoose.Schema({
         name: String
     },
     note: String,
-    days: Number,
+    days: String,
     status: {
         type: String,
         default: "1"
@@ -31,5 +23,5 @@ var applyLeaveSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('applyLeave', applyLeaveSchema);
+module.exports = mongoose.model('applyleaves', applyLeaveSchema, 'applyLeave');
 
