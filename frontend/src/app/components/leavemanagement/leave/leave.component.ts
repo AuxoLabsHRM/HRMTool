@@ -39,7 +39,7 @@ export class LeaveComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  
   constructor(
     private qualificationservice: QualificationService,
     private dialog: MatDialog,
@@ -53,6 +53,8 @@ export class LeaveComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+
   }
 
   ngAfterViewInit() {

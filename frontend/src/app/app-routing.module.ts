@@ -130,7 +130,7 @@ const routes: Routes = [
     {
       path: 'applyleave-Admin',
       component: LeaveapprovalComponent,
-      data: { sideNaveLabel: 'Apply leave-Admin'}
+      data: { sideNaveLabel: 'Approve leave-Admin'}
     },
     {
       path: 'leave',

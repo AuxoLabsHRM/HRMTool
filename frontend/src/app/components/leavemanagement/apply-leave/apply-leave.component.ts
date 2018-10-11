@@ -23,6 +23,8 @@ export class ApplyLeaveComponent implements OnInit {
   applyleaveForm: FormGroup;
   value = 0;
   disabled: any;
+  sickLeave: any;
+  casualLeave: any;
   types: Type[] = [
     {id: '0', name: 'Sick Leave'},
     {id: '1', name: 'Casual Leave'}
@@ -45,6 +47,7 @@ export class ApplyLeaveComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.applyleaveForm)
+    this.getavailableleave(this.userId);
   }
 
   error: any ='End Date greater then from date';
@@ -104,6 +107,14 @@ export class ApplyLeaveComponent implements OnInit {
     
      this.value = Math.ceil(diff / (1000 * 3600 * 24))+ limit; 
     console.log(this.value);
+  }
+
+  // Get available leave
   
+  getavailableleave(id){
+    this.qualificationservice.getavailableleave(id).subscribe((res: any) => {
+      this.sickLeave = res.data[0].sickLeave;
+      this.casualLeave = res.data[0].casualLeave
+    })
   }
 }
