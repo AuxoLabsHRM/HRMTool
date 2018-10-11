@@ -44,7 +44,7 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let leave">
         &nbsp;&nbsp;
-          <button mat-flat-button color="warn" *ngIf="leave.status == '1'" (click)="leavecancel()">Cancel</button> &nbsp;
+          <button mat-flat-button color="warn" *ngIf="leave.status == '1'" (click)="leavecancel(leave._id)">Cancel</button> &nbsp;
           <span *ngIf="leave.status != '1'"> -- </span>
       </mat-cell>
     </ng-container>

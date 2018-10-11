@@ -20,9 +20,9 @@ router.post('/', function (req, res) {
         },
         function (err, dependent) {
             if (err) {
-                res.status(500).json({ "ResultTye": 2, "Message": "Error in add dependent detail", "data": [] });
+                res.status(500).json({ "ResultType": 2, "Message": "Error in add dependent detail", "data": [] });
             } else {
-                res.status(200).json({ "ResultTye": 1, "Message": "Succesfully dependent detail added", "data": dependent });
+                res.status(200).json({ "ResultType": 1, "Message": "Succesfully dependent detail added", "data": dependent });
             }
         });
 });
@@ -31,11 +31,11 @@ router.post('/', function (req, res) {
 router.get('/:userId', function (req, res) {
     Dependent.find({ userId : req.params.userId }, function (err, dependents) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching dependent details", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching dependent details", "data": [] });
         } else if (!dependents) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No dependent detail found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No dependent detail found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching dependent details", "data": dependents });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching dependent details", "data": dependents });
         }
     });
 });
@@ -43,11 +43,11 @@ router.get('/:userId', function (req, res) {
 router.get('/dep/:id', function (req, res) {
     Dependent.findById(req.params.id, function (err, dependent) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching dependent detail", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching dependent detail", "data": [] });
         } else if (!dependent) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No dependent detail found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No dependent detail found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching dependent detail", "data": dependent });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching dependent detail", "data": dependent });
         }
     });
 });
@@ -56,9 +56,9 @@ router.get('/dep/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     Dependent.findByIdAndRemove(req.params.id, function (err, dependent) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in remove dependent detail"});
+            res.status(500).json({ "ResultType": 2, "Message": "Error in remove dependent detail"});
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully dependent detail deleted"});
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully dependent detail deleted"});
         }
     });
 });
@@ -68,9 +68,9 @@ router.put('/:id', function (req, res) {
         new: true
     }, function (err, dependent) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in update dependent detail", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in update dependent detail", "data": [] });
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully dependent detail update", "data": dependent });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully dependent detail update", "data": dependent });
         }
     });
 });

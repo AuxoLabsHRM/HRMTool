@@ -16,9 +16,9 @@ router.post('/', function (req, res) {
         },
         function (err, skill) {
             if (err) {
-                res.status(500).json({ "ResultTye": 2, "Message": "Error in add skill", "data": [] });
+                res.status(500).json({ "ResultType": 2, "Message": "Error in add skill", "data": [] });
             } else {
-                res.status(200).json({ "ResultTye": 1, "Message": "Succesfully add skill", "data": skill });
+                res.status(200).json({ "ResultType": 1, "Message": "Succesfully add skill", "data": skill });
             }
         });
 });
@@ -27,11 +27,11 @@ router.post('/', function (req, res) {
 router.get('/:userId', function (req, res) {
     Skill.find({ userId : req.params.userId }, function (err, skills) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching skills", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching skills", "data": [] });
         } else if (!skills) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No skill found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No skill found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching skills", "data": skills });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching skills", "data": skills });
         }
     });
 });
@@ -39,11 +39,11 @@ router.get('/:userId', function (req, res) {
 router.get('/skills/:id', function (req, res) {
     Skill.findById(req.params.id, function (err, skill) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in fetching skill", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in fetching skill", "data": [] });
         } else if (!skill) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No skill found", "data": [] }); 
+            res.status(404).json({ "ResultType": 1, "Message": "No skill found", "data": [] }); 
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully fetching skill", "data": skill });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully fetching skill", "data": skill });
         }
     });
 });
@@ -52,9 +52,9 @@ router.get('/skills/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     Skill.findByIdAndRemove(req.params.id, function (err, skill) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in remove skill"});
+            res.status(500).json({ "ResultType": 2, "Message": "Error in remove skill"});
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully skill deleted"});
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully skill deleted"});
         }
     });
 });
@@ -64,9 +64,9 @@ router.put('/:id', function (req, res) {
         new: true
     }, function (err, skill) {
         if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error in update skill", "data": [] });
+            res.status(500).json({ "ResultType": 2, "Message": "Error in update skill", "data": [] });
         } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Succesfully update skill", "data": skill });
+            res.status(200).json({ "ResultType": 1, "Message": "Succesfully update skill", "data": skill });
         }
     });
 });

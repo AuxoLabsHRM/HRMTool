@@ -106,9 +106,7 @@ export class QualificationService {
       return this.http.get(`${environment.apiUrl}/api/availableLeave/` + id).pipe(catchError(this.handleError));
     }
 
-   // Approve leave 
-   
-     // Create skill
+   // Change Leave Status
   approveleave(id: any, data): Observable<any> {
     return this.http.put(`${environment.apiUrl}/api/applyleave/status/` + id, data).pipe(catchError(this.handleError));
   }

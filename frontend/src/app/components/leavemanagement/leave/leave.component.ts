@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTabChangeEvent, MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDatepickerModule } from '@angular/material';
+import { MatTabChangeEvent, MatSnackBar, MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDatepickerModule } from '@angular/material';
 import { ApplyLeaveComponent } from '../apply-leave/apply-leave.component';
 import { QualificationService } from '../../../_services/qualification.service';
 import { Router } from '@angular/router';
@@ -41,6 +41,7 @@ export class LeaveComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private snackBar: MatSnackBar,
     private qualificationservice: QualificationService,
     private dialog: MatDialog,
     private router: Router
@@ -102,7 +103,21 @@ export class LeaveComponent implements OnInit {
     });
   }
 
-  leavecancel(){
-
+  leavecancel(id){
+    let data = { "status" : "4"};
+    this.qualificationservice.approveleave(id,data).subscribe((res: any) =>{
+      if (res.ResultType == 1) {
+        this.snackBar.open(res.Message, '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        });
+        this.getleavedtl(this.userId);
+      } else {
+        this.snackBar.open(res.Message, '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        });
+      }
+    });
   }
 }
