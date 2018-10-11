@@ -7,8 +7,9 @@ router.use(bodyParser.urlencoded({
 }));
 router.use(bodyParser.json());
 var ApplyLeave = require('./applyleave');
+var AvailableLeave = require('./availableLeave');
 
-router.post('/', function(req, res) {
+router.post('/', function (req, res) {
     ApplyLeave.create({
         userId: req.body.userId,
         fromDate: req.body.fromDate,
@@ -17,27 +18,70 @@ router.post('/', function(req, res) {
         note: req.body.note,
         days: req.body.days
     },
-    function (err, Leave) {
-        if (err) {
-            res.status(500).json({ "ResultTye": 2, "Message": "Error occured while applying leave", "data": [] });
-        } else {
-            res.status(200).json({ "ResultTye": 1, "Message": "Leave applied successfully", "data": Leave });
-        }
-    });
-    
+        function (err, Leave) {
+            if (err) {
+                res.status(500).json({ "ResultTye": 2, "Message": "Error occured while applying leave"});
+            } else {
+                AvailableLeave.find({ userId: req.body.userId }, function (err, Leaves) {
+                    console.log(Leaves, 'Leaves');
+                    if (err) {
+                        res.status(500).json({ "ResultTye": 2, "Message": "Error occured while applying leave"});
+                    } else {
+                        if (req.body.leaveType.name == ("sickLeave" || "casualLeave")) {
+                            if (req.body.leaveType.name == "sickLeave") {
+                                let count = Leaves[0].sickLeave - req.body.days;
+                                var leavevalues = { $set: { sickLeave: count } };
+                            } else if (req.body.leaveType.name == "casualLeave") {
+                                let count = Leaves[0].casualLeave - req.body.days;
+                                var leavevalues = { $set: { casualLeave: count } };
+                            }
+                            AvailableLeave.updateOne({ userId: req.body.userId }, leavevalues, function (err, response) {
+                                if (err) {
+                                    res.status(500).json({ "ResultTye": 2, "Message": "Error occured while applying leave" });
+                                } else {
+                                    res.status(200).json({ "ResultTye": 1, "Message": "Leave applied successfully" });
+                                }
+                            });
+                        } else {
+                            res.status(200).json({ "ResultTye": 1, "Message": "Leave applied successfully" });
+                        }
+                    }
+                })
+            }
+        });
+
 });
 
 router.get('/:userId', function(req, res){
-    ApplyLeave.find({ userId : req.params.userId }, function (err, Leaves) {
+    ApplyLeave.aggregate([
+        { "$match": { "userId" : req.params.userId } },
+        {
+            $lookup:
+            {
+                from: 'AvailableLeave',
+                localField: "userId",
+                foreignField: "userId",
+                as: 'available'
+            }
+        }
+    ]).exec((err, Leaves) => {
         if (err) {
             res.status(500).json({ "ResultTye": 2, "Message": "Error occurred while getting leave detail", "data": [] });
         } else if (!Leaves) {
-            res.status(404).json({ "ResultTye": 1, "Message": "No records found", "data": [] }); 
+            res.status(404).json({ "ResultTye": 1, "Message": "No records found", "data": [] });
         } else {
             res.status(200).json({ "ResultTye": 1, "Message": "Leave details get successfully", "data": Leaves });
         }
-    }
-    );
+    });
+    // ApplyLeave.find({ userId : req.params.userId }, function (err, Leaves) {
+    //     if (err) {
+    //         res.status(500).json({ "ResultTye": 2, "Message": "Error occurred while getting leave detail", "data": [] });
+    //     } else if (!Leaves) {
+    //         res.status(404).json({ "ResultTye": 1, "Message": "No records found", "data": [] }); 
+    //     } else {
+    //         res.status(200).json({ "ResultTye": 1, "Message": "Leave details get successfully", "data": Leaves });
+    //     }
+    // });
 });
 
 router.put('/status/:id', function (req, res) {
